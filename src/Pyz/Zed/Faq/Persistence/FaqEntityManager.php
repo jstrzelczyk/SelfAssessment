@@ -30,6 +30,14 @@ class FaqEntityManager extends AbstractEntityManager implements FaqEntityManager
         return $faqTransfer;
     }
 
+    public function deleteFaq (FaqTransfer $faqTransfer) :void
+    {
+        $faqEntity = $this
+            ->createPyzFaqQuery()
+            ->filterByIdFaq($faqTransfer->getIdFaq())
+            ->delete();
+    }
+
     /**
      * @return \Orm\Zed\Faq\Persistence\PyzFaqQuery
      */

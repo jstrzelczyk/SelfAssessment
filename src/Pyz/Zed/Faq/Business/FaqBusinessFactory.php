@@ -1,6 +1,8 @@
 <?php
 namespace Pyz\Zed\Faq\Business;
 
+use Pyz\Zed\Faq\Business\Faq\FaqDeleter;
+use Pyz\Zed\Faq\Business\Faq\FaqDeleterInterface;
 use Pyz\Zed\Faq\Business\Faq\FaqReader;
 use Pyz\Zed\Faq\Business\Faq\FaqSaver;
 use Pyz\Zed\Faq\Business\Faq\FaqSaverInterface;
@@ -30,6 +32,13 @@ class FaqBusinessFactory extends AbstractBusinessFactory
     {
         return new FaqReader(
             $this->getRepository()
+        );
+    }
+
+    public function createFaqDeleter() :FaqDeleterInterface
+    {
+        return new FaqDeleter(
+            $this->getEntityManager()
         );
     }
 

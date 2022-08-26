@@ -4,6 +4,7 @@ use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 use Orm\Zed\Faq\Persistence\PyzFaqQuery;
 use Orm\Zed\Faq\Persistence\Map\PyzFaqTableMap;
+use Spryker\Service\UtilText\Model\Url\Url;
 
 class FaqTable extends AbstractTable
 {
@@ -69,25 +70,45 @@ class FaqTable extends AbstractTable
                     $faqDataItem[PyzFaqTableMap::COL_QUESTION],
                 PyzFaqTableMap::COL_ANSWER =>
                     $faqDataItem[PyzFaqTableMap:: COL_ANSWER],
-                self::COL_ACTIONS => $this->generateEditButton('/faq/edit?id-faq='.$faqDataItem[PyzFaqTableMap::COL_ID_FAQ],'Edit')
+//                self::COL_ACTIONS => $this->generateEditButton('/faq/edit?id-faq='.$faqDataItem[PyzFaqTableMap::COL_ID_FAQ],'Edit')
+                static::COL_ACTIONS => $this->getActionButtons($faqDataItem[PyzFaqTableMap::COL_ID_FAQ]),
             ];
         }
         return $faqTableRows;
     }
 
-//    protected function generateItemButtons($planetItem) {
-//        $btnGroup = [];
-//        $btnGroup[] = $this->createButtonGroupItem(
-//            "Edit",
-//            "/planet/edit?name={$planetItem[PyzPlanetTableMap::COL_NAME]}"
-//        );
-//        $btnGroup[] = $this->createButtonGroupItem(
-//            "Delete",
-//            "/planet/delete?name={$planetItem[PyzPlanetTableMap::COL_NAME]}"
-//        );
-//        return $this->generateButtonGroup(
-//            $btnGroup,
-//            'Actions'
-//        );
-//    }
+    protected function createEditButton (string $faqId): string
+    {
+        $editFaqUrl = Url::generate(
+            '/faq/edit',
+            [
+                'id-faq' => $faqId,
+            ],
+        );
+
+        return $this->generateEditButton($editFaqUrl, 'Edit');
+    }
+
+    protected function createDeleteButton (string $faqId): string
+    {
+        $deleteFaqUrl = Url::generate(
+            '/faq/delete',
+            [
+                'id-faq' => $faqId,
+            ],
+        );
+
+        return $this->generateRemoveButton($deleteFaqUrl, 'Delete');
+    }
+
+    protected function getActionButtons (string $faqId) :string
+    {
+        $buttons = [];
+        $buttons[] = $this->createEditButton($faqId);
+        $buttons[] = $this->createDeleteButton($faqId);
+
+        return implode(' ', $buttons);
+    }
+
+
 }

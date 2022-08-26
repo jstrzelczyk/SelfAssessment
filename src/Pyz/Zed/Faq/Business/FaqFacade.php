@@ -27,6 +27,14 @@ class FaqFacade extends AbstractFacade implements FaqFacadeInterface
 
     }
 
+    public function deleteFaq (FaqTransfer $faqTransfer) :void
+    {
+        $this
+            ->getFactory()
+            ->createFaqDeleter()
+            ->deleteFaq($faqTransfer);
+    }
+
     /**
      * {@inheritDoc}
      *
