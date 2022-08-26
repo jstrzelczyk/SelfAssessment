@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Faq\Persistence"
+          package="src.Orm.Zed.Faq.Persistence">
+    <table name="pyz_faq" phpName="PyzFaq">
+        <column name="id_faq" required="true" type="INTEGER"
+                autoIncrement="true" primaryKey="true"/>
+        <column name="question" required="true" type="VARCHAR"
+                size="150"/>
+        <column name="answer" type="VARCHAR"
+                size="255"/>
+    </table>
+</database>

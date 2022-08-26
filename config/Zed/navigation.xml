@@ -516,6 +516,19 @@
                 <controller>maintenance</controller>
                 <action>index</action>
             </storage>
+
+
+
         </pages>
     </maintenance>
+
+    <faq>
+        <label>FAQ</label>
+        <title>FAQ</title>
+        <icon>fa-question</icon>
+        <bundle>faq</bundle>
+        <controller>list</controller>
+        <action>index</action>
+    </faq>
+
 </config>
