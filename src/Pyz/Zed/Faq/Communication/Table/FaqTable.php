@@ -7,6 +7,7 @@ use Orm\Zed\Faq\Persistence\Map\PyzFaqTableMap;
 
 class FaqTable extends AbstractTable
 {
+    public const COL_ACTIONS = 'Action';
     /** @var \Orm\Zed\Faq\Persistence\PyzFaqQuery */
     private PyzFaqQuery $faqQuery;
     /**
@@ -29,7 +30,8 @@ class FaqTable extends AbstractTable
     {
         $config->setHeader([
             PyzFaqTableMap::COL_QUESTION => 'Question',
-            PyzFaqTableMap::COL_ANSWER => 'Answer'
+            PyzFaqTableMap::COL_ANSWER => 'Answer',
+            self::COL_ACTIONS => 'Action'
         ]);
 
         $config->setSortable([
@@ -39,6 +41,10 @@ class FaqTable extends AbstractTable
 
         $config->setSearchable([
             PyzFaqTableMap::COL_QUESTION
+        ]);
+
+        $config->setRawColumns([
+            self::COL_ACTIONS
         ]);
 
         return $config;
@@ -62,9 +68,26 @@ class FaqTable extends AbstractTable
                 PyzFaqTableMap::COL_QUESTION =>
                     $faqDataItem[PyzFaqTableMap::COL_QUESTION],
                 PyzFaqTableMap::COL_ANSWER =>
-                    $faqDataItem[PyzFaqTableMap:: COL_ANSWER]
+                    $faqDataItem[PyzFaqTableMap:: COL_ANSWER],
+                self::COL_ACTIONS => $this->generateEditButton('/faq/edit?id-faq='.$faqDataItem[PyzFaqTableMap::COL_ID_FAQ],'Edit')
             ];
         }
         return $faqTableRows;
     }
+
+//    protected function generateItemButtons($planetItem) {
+//        $btnGroup = [];
+//        $btnGroup[] = $this->createButtonGroupItem(
+//            "Edit",
+//            "/planet/edit?name={$planetItem[PyzPlanetTableMap::COL_NAME]}"
+//        );
+//        $btnGroup[] = $this->createButtonGroupItem(
+//            "Delete",
+//            "/planet/delete?name={$planetItem[PyzPlanetTableMap::COL_NAME]}"
+//        );
+//        return $this->generateButtonGroup(
+//            $btnGroup,
+//            'Actions'
+//        );
+//    }
 }
