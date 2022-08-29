@@ -1,6 +1,7 @@
 <?php
 namespace Pyz\Zed\Faq\Persistence;
 
+use Generated\Shared\Transfer\FaqCollectionTransfer;
 use Generated\Shared\Transfer\FaqTransfer;
 use Orm\Zed\Faq\Persistence\PyzFaq;
 use Orm\Zed\Faq\Persistence\PyzFaqQuery;
@@ -42,4 +43,22 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
     {
         return (new FaqTransfer())->fromArray($faqEntity->toArray());
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     * @return \Generated\Shared\Transfer\FaqCollectionTransfer $faqsRestApiTransfer
+     */
+    public function getFaqCollection(FaqCollectionTransfer $faqsRestApiTransfer): FaqCollectionTransfer
+    {
+        $faqCollection = $this->createPyzFaqQuery()
+            ->find();
+
+        foreach ($faqCollection as $faqEntity) {
+            $faqTransfer = (new FaqTransfer())->fromArray($faqEntity->toArray());
+            $faqsRestApiTransfer->addFaq($faqTransfer);
+        }
+
+        return $faqsRestApiTransfer;
+    }
+
 }
