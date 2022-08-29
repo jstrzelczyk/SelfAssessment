@@ -516,6 +516,34 @@
                 <controller>maintenance</controller>
                 <action>index</action>
             </storage>
+
+
+
         </pages>
     </maintenance>
+
+    <faq>
+        <label>Faq</label>
+        <title>Faq</title>
+        <icon>fa-question</icon>
+        <pages>
+            <list>
+                <label>List</label>
+                <title>List</title>
+                <bundle>faq</bundle>
+                <controller>list</controller>
+                <action>index</action>
+                <visible>1</visible>
+            </list>
+            <create>
+                <label>Create</label>
+                <title>Create</title>
+                <bundle>faq</bundle>
+                <controller>create</controller>
+                <action>index</action>
+                <visible>1</visible>
+            </create>
+        </pages>
+    </faq>
+
 </config>
