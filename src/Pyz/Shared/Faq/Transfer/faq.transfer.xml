@@ -7,6 +7,7 @@
         <property name="idFaq" type="int"/>
         <property name="question" type="string"/>
         <property name="answer" type="string"/>
+        <property name="status" type="bool"/>
     </transfer>
 
 

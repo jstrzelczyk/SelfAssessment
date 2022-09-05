@@ -9,7 +9,7 @@
                 autoIncrement="true" primaryKey="true"/>
         <column name="question" required="true" type="VARCHAR"
                 size="150"/>
-        <column name="answer" type="VARCHAR"
-                size="255"/>
+        <column name="answer" type="LONGVARCHAR"/>
+        <column name="status" type="boolean" default="false" />
     </table>
 </database>
