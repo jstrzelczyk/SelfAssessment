@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class FaqForm extends AbstractType
 {
@@ -33,6 +34,7 @@ class FaqForm extends AbstractType
 
     private const FIELD_QUESTION = 'question';
     private const FIELD_ANSWER = 'answer';
+    private const FIELD_STATUS = 'status';
     public const BUTTON_SUBMIT = "Submit";
 
     /**
@@ -44,6 +46,7 @@ class FaqForm extends AbstractType
         $this
             ->addQuestionField($builder)
             ->addAnswerField($builder)
+            ->addStatus($builder)
             ->addSubmitButton($builder);
 
     }
@@ -94,9 +97,7 @@ class FaqForm extends AbstractType
                     new NotBlank(),
                     new Length([
                         'min' => 10,
-                        'minMessage' => 'FAQ answer minimum length is at least {{ limit }}',
-                        'max' => 255,
-                        'maxMessage' => 'FAQ answer maximum length is at least {{ limit }}'
+                        'minMessage' => 'FAQ answer minimum length is at least {{ limit }}'
                     ])
                 ]
             ]
@@ -104,9 +105,34 @@ class FaqForm extends AbstractType
 
         return $this;
     }
+//    private function addStatus(FormBuilderInterface $builder): FaqForm
+//    {
+//        $builder->add(static::FIELD_STATUS, TextType::class, [
+//                'constraints' => [
+//                    new NotBlank(),
+//                    new Length([
+//                        'max' => 1
+//                    ])
+//                ]
+//            ]
+//        );
+//
+//        return $this;
+//    }
 
+    private function addStatus(FormBuilderInterface $builder): FaqForm
+    {
+        $builder->add('Status', ChoiceType::class, [
+                'choices' => [
+                    'Inactive'=> false,
+                    'Active'=> true
 
+                ]
+            ]
+        );
 
+        return $this;
+    }
 
 
 

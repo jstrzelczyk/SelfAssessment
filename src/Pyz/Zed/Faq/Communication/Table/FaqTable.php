@@ -32,12 +32,14 @@ class FaqTable extends AbstractTable
         $config->setHeader([
             PyzFaqTableMap::COL_QUESTION => 'Question',
             PyzFaqTableMap::COL_ANSWER => 'Answer',
+            PyzFaqTableMap::COL_STATUS => 'Status',
             self::COL_ACTIONS => 'Action'
         ]);
 
         $config->setSortable([
             PyzFaqTableMap::COL_QUESTION,
-            PyzFaqTableMap::COL_ANSWER
+            PyzFaqTableMap::COL_ANSWER,
+            PyzFaqTableMap::COL_STATUS
         ]);
 
         $config->setSearchable([
@@ -70,6 +72,8 @@ class FaqTable extends AbstractTable
                     $faqDataItem[PyzFaqTableMap::COL_QUESTION],
                 PyzFaqTableMap::COL_ANSWER =>
                     $faqDataItem[PyzFaqTableMap:: COL_ANSWER],
+                PyzFaqTableMap::COL_STATUS =>
+                    $faqDataItem[PyzFaqTableMap:: COL_STATUS],
 //                self::COL_ACTIONS => $this->generateEditButton('/faq/edit?id-faq='.$faqDataItem[PyzFaqTableMap::COL_ID_FAQ],'Edit')
                 static::COL_ACTIONS => $this->getActionButtons($faqDataItem[PyzFaqTableMap::COL_ID_FAQ]),
             ];
