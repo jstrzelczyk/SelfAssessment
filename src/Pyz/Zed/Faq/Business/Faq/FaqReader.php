@@ -37,4 +37,9 @@ class FaqReader implements FaqReaderInterface
         return $this->faqRepository->getFaqCollection($faqsRestApiTransfer);
     }
 
+    public function getFaq(FaqTransfer $faqRestApiTransfer): FaqTransfer
+    {
+        return $this->faqRepository->getFaq($faqRestApiTransfer);
+    }
+
 }

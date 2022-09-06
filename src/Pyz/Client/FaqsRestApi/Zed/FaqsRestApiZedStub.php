@@ -3,6 +3,7 @@
 namespace Pyz\Client\FaqsRestApi\Zed;
 
 use Generated\Shared\Transfer\FaqCollectionTransfer;
+use Generated\Shared\Transfer\FaqTransfer;
 use Spryker\Client\ZedRequest\ZedRequestClientInterface;
 
 class FaqsRestApiZedStub implements FaqsRestApiZedStubInterface
@@ -29,5 +30,17 @@ class FaqsRestApiZedStub implements FaqsRestApiZedStubInterface
         $faqCollectionTransfer = $this->zedRequestClient->call('/faq/gateway/get-faq-collection', $faqCollectionTransfer);
 
         return $faqCollectionTransfer;
+    }
+
+    /**
+     * @return \Generated\Shared\Transfer\FaqTransfer
+     */
+    public function getFaq(FaqTransfer $faqTransfer): FaqTransfer
+    {
+        /** @var \Generated\Shared\Transfer\FaqTransfer $faqTransfer */
+
+        $faqTransfer = $this->zedRequestClient->call('/faq/gateway/get-faq', $faqTransfer);
+
+        return $faqTransfer;
     }
 }

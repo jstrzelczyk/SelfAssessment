@@ -28,5 +28,5 @@ interface FaqFacadeInterface
      * @return \Generated\Shared\Transfer\FaqTransfer|null
      */
     public function findFaqById(int $idFaq): ?FaqTransfer;
-
+    public function getFaq(FaqTransfer $faqTransfer): FaqTransfer;
 }

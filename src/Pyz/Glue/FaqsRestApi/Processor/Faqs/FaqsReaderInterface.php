@@ -13,6 +13,6 @@ interface FaqsReaderInterface
 //    /**
 //     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
 //     */
-//    public function getFaq(RestRequestInterface $restRequest, int $id): RestResponseInterface;
+    public function getFaq(RestRequestInterface $restRequest): RestResponseInterface;
 
 }
