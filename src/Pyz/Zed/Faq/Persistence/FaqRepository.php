@@ -60,5 +60,12 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
 
         return $faqsRestApiTransfer;
     }
-
+    /**
+     * @param \Generated\Shared\Transfer\FaqTransfer $faqRestApiTransfer
+     * @return \Generated\Shared\Transfer\FaqTransfer $faqRestApiTransfer
+     */
+    public function getFaq(FaqTransfer $faqRestApiTransfer): FaqTransfer
+    {
+        return $this->findFaqById($faqRestApiTransfer->getIdFaq());
+    }
 }

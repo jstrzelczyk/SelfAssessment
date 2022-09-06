@@ -5,10 +5,9 @@
     <transfer name="RestFaqsResponseAttributes">
         <property name="question" type="string"/>
         <property name="answer" type="string"/>
+        <property name="status" type="bool"/>
     </transfer>
 
-    <transfer name="FaqCollection">
-        <property name="faqs" type="Faq[]" singular="faq"/>
-    </transfer>
+
 
 </transfers>

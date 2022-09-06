@@ -10,5 +10,7 @@
         <property name="status" type="bool"/>
     </transfer>
 
-
+    <transfer name="FaqCollection">
+        <property name="faqs" type="Faq[]" singular="faq"/>
+    </transfer>
 </transfers>
